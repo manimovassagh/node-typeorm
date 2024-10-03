@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
 import 'reflect-metadata';
-import { User } from './entity/User';
+import { Course } from './entity/Course';
 import { AppDataSource } from './initDB/dbConfig';
 import { initDB } from './initDB/initDB';
+import { Student } from './entity/Student';
 
 const app = express();
 const port = 3000;
@@ -10,8 +11,14 @@ const port = 3000;
 initDB();
 // Basic express route
 app.get('/', async (req: Request, res: Response) => {
-  const users = await AppDataSource.manager.find(User);
-  res.send(users);
+  // Fetch students with their attended courses
+  const students = await AppDataSource.manager.find(Student, { relations: ['courseAttend'] });
+
+  // Send the response with status and the list of students
+  res.json({
+    status: "success",
+    students: students
+  });
 });
 
 app.listen(port, () => {
