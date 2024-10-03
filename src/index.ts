@@ -9,18 +9,21 @@ const port = 3000;
 // Initialize the TypeORM data source
 AppDataSource.initialize()
   .then(async () => {
-    console.log('Data Source has been initialized!');
+    console.log('Data Source has been initialized, schema dropped and recreated!');
 
-    // Create and save a new user
-    const user = new User();
-    user.firstName = 'Sophia';
-    user.lastName = 'Smith';
-    user.age = 25;
+    
+    // Create and save new users in one step
+    const user1 = new User();
+    user1.firstName = 'Sophia';
+    user1.lastName = 'Smith';
+    user1.age = 25;
+
     const user2 = new User();
-    user.firstName = 'Mani';
-    user.lastName = 'Movassagh';
-    user.age = 48;
-    await AppDataSource.manager.save(user);
+    user2.firstName = 'Mani';
+    user2.lastName = 'Movassagh';
+    user2.age = 48;
+
+    await AppDataSource.manager.save([user1, user2]);
 
     // Fetch all users
     const users = await AppDataSource.manager.find(User);
