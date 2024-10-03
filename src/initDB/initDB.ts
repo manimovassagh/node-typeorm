@@ -1,34 +1,49 @@
 import { Course } from "../entity/Course";
-import { User } from "../entity/User";
+import { Student } from "../entity/Student";
 import { AppDataSource } from "./dbConfig";
 
-export const initDB = async () => {
+
+
+export const initDB = () => {
     AppDataSource.initialize()
-    .then(async () => {
-      console.log('Data Source has been initialized, schema dropped and recreated!');
-  
-      const user1 = new User();
-      user1.firstName = 'Sophia';
-      user1.lastName = 'Smith';
-      user1.age = 25;
-  
-      const user2 = new User();
-      user2.firstName = 'Mani';
-      user2.lastName = 'Movassagh';
-      user2.age = 48;
+  .then(async () => {
+    console.log('Data Source has been initialized, schema dropped and recreated!');
 
-      const user3 = new User();
-      user3.firstName = 'Sahar';
-      user3.lastName = 'Morattab';
-            user3.age = 44;
-  
-      const c = new Course();
-      c.courseName = 'Angular';
-      await AppDataSource.manager.save(c);
-      await AppDataSource.manager.save([user1, user2,user3]);
+    // Create and save some courses
+    const course1 = new Course();
+    course1.courseName = 'Mathematics';
+    course1.duration = 30;
 
-      const users = await AppDataSource.manager.find(User);
-      console.log('All users: ', users);
-    })
-    .catch((error) => console.log('Error during Data Source initialization:', error));
+    const course2 = new Course();
+    course2.courseName = 'Physics';
+    course2.duration = 40;
+
+    const course3 = new Course();
+    course3.courseName = 'Chemistry';
+    course3.duration = 35;
+
+    // Save courses to the database
+    await AppDataSource.manager.save([course1, course2, course3]);
+
+    // Create and save some students
+    const student1 = new Student();
+    student1.nameOfStudent = 'Sophia';
+    student1.courseAttend = [course1, course2];  // Student attending two courses
+
+    const student2 = new Student();
+    student2.nameOfStudent = 'Mani';
+    student2.courseAttend = [course2, course3];  // Student attending two courses
+
+    const student3 = new Student();
+    student3.nameOfStudent = 'John';
+    student3.courseAttend = [course1];  // Student attending one course
+
+    // Save students to the database
+    await AppDataSource.manager.save([student1, student2, student3]);
+
+    // Fetch all students and their courses
+    const students = await AppDataSource.manager.find(Student, { relations: ['courseAttend'] });
+    console.log('All students with their courses: ', students);
+  })
+  .catch((error) => console.log('Error during Data Source initialization:', error));
 }
