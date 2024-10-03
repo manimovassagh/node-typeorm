@@ -2,8 +2,8 @@ import { Course } from '../entity/Course';
 import { Student } from '../entity/Student';
 import { AppDataSource } from './configDB';
 
-
-export const initDB = () => {
+type IRunDB = () =>void;
+export const initDB :IRunDB= () => {
     AppDataSource.initialize()
     .then(async () => {
       console.log('Data Source has been initialized, schema dropped and recreated!');
