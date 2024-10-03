@@ -14,7 +14,7 @@ export const initDB = () => {
       course1.duration = 30;
   
       const course2 = new Course();
-      course2.courseName = 'Physics';
+      course2.courseName = 'Programming !';
       course2.duration = 40;
   
       const course3 = new Course();
