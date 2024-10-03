@@ -15,10 +15,14 @@ export const initDB = async () => {
       user2.firstName = 'Mani';
       user2.lastName = 'Movassagh';
       user2.age = 48;
+
+      const user3 = new User();
+      user3.firstName = 'Sahar';
+      user3.lastName = 'Morattab';
+      user3.age = 44;
   
-      await AppDataSource.manager.save([user1, user2]);
-  
-      // Fetch all users
+      await AppDataSource.manager.save([user1, user2,user3]);
+
       const users = await AppDataSource.manager.find(User);
       console.log('All users: ', users);
     })
