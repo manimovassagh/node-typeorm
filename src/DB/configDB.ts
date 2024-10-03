@@ -8,6 +8,6 @@ export const AppDataSource = new DataSource({
   database: './src/database.sqlite',
   synchronize: true,
   dropSchema: true,
-  logging: true,
+  logging: false,
   entities: [User,Course,Student],
 });

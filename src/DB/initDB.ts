@@ -1,6 +1,6 @@
 import { Course } from '../entity/Course';
 import { Student } from '../entity/Student';
-import { AppDataSource } from './dbConfig';
+import { AppDataSource } from './configDB';
 
 
 export const initDB = () => {
