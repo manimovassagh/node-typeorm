@@ -1,4 +1,3 @@
-
 # Student-Course API
 
 A RESTful API built with **Express** and **TypeORM** to manage Students and Courses. This project demonstrates advanced API features such as error handling, custom middlewares, and environment variable management.
