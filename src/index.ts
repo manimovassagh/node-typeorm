@@ -11,8 +11,6 @@ AppDataSource.initialize()
   .then(async () => {
     console.log('Data Source has been initialized, schema dropped and recreated!');
 
-    
-    // Create and save new users in one step
     const user1 = new User();
     user1.firstName = 'Sophia';
     user1.lastName = 'Smith';
