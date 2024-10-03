@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "build": "tsc", 
+    "build": "tsc",
     "startBuild": "node dist/index.js",
     "start": "nodemon src/index.ts"
   },
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "express": "^4.21.0",
+    "express-response-formatter": "^2.0.2",
     "nodemon": "^3.1.7",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
