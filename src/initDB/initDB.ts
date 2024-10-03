@@ -1,3 +1,4 @@
+import { Course } from "../entity/Course";
 import { User } from "../entity/User";
 import { AppDataSource } from "./dbConfig";
 
@@ -19,8 +20,11 @@ export const initDB = async () => {
       const user3 = new User();
       user3.firstName = 'Sahar';
       user3.lastName = 'Morattab';
-      user3.age = 44;
+            user3.age = 44;
   
+      const c = new Course();
+      c.courseName = 'Angular';
+      await AppDataSource.manager.save(c);
       await AppDataSource.manager.save([user1, user2,user3]);
 
       const users = await AppDataSource.manager.find(User);
