@@ -1,7 +1,7 @@
-import 'reflect-metadata';
-import { AppDataSource } from './ormconfig';
-import { User } from './entity/User';
 import express, { Request, Response } from 'express';
+import 'reflect-metadata';
+import { User } from './entity/User';
+import { AppDataSource } from './ormconfig';
 
 const app = express();
 const port = 3000;
