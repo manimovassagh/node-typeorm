@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
+    "build": "tsc", 
+    "startBuild": "node dist/index.js",
     "start": "nodemon src/index.ts"
   },
   "author": "",
