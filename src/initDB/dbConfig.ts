@@ -6,8 +6,8 @@ import { User } from '../entity/User';
 export const AppDataSource = new DataSource({
   type: 'sqlite',
   database: './src/database.sqlite',
-  synchronize: true, // Auto-sync the schema with the database
-  dropSchema: true,  // Drop the database schema and recreate it
+  synchronize: true,
+  dropSchema: true,
   logging: true,
   entities: [User,Course,Student],
 });

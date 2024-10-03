@@ -40,19 +40,8 @@ export const initDB = () => {
       // Save students to the database
       await AppDataSource.manager.save([student1, student2, student3]);
   
-      // Fetch all students with their courses
-      const students = await AppDataSource.manager.find(Student, { relations: ['courseAttend'] });
   
-      // Display the students and their courses
-      console.log('All students with their courses:');
-      students.forEach((student) => {
-        console.log(`Student: ${student.nameOfStudent}, ID: ${student.id}`);
-        console.log('Courses attended:');
-        student.courseAttend.forEach((course) => {
-          console.log(`- ${course.courseName} (Duration: ${course.duration} days)`);
-        });
-        console.log('--------------------------');
-      });
+
     })
     .catch((error) => console.log('Error during Data Source initialization:', error));   
 }
